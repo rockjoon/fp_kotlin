@@ -7,16 +7,19 @@ fun main() {
     println(max(listOf(4, 8, 1, 5, 6)))
 }
 
+// 재귀로 합계 구하기
 private fun sum(n: Int): Int = when {
     n < 0 -> 0
     else -> n + sum(n-1)
 }
 
+// 재귀로 n제곱 구하기
 private fun power(x:Int, n: Int) : Int = when {
     n < 1 -> 1
     else -> x * power(x, n - 1)
 }
 
+// 재귀로 팩토리얼 구하기
 private fun factorial(n: Int): Int {
     return when {
         n < 1 -> 1
@@ -27,6 +30,7 @@ private fun factorial(n: Int): Int {
 fun List<Int>.head() = first()
 fun List<Int>.tail() = drop(1)
 
+// 재귀로 최대값 구하기
 private fun max(list: List<Int>) : Int {
     return when {
         list.isEmpty() -> throw IllegalArgumentException()
