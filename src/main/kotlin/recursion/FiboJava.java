@@ -1,4 +1,4 @@
-package fibonacci;
+package recursion;
 
 public class FiboJava {
     public static void main(String[] args) {
