@@ -6,7 +6,9 @@ fun main() {
     println(factorial(5))
     println(max(listOf(4, 8, 11, 5, 61)))
     println(reverse("abcd"))
-    println(toBinary(5))
+    println(toBinary(18))
+    println(replicate(4, 5))
+    println(take(4, listOf(1, 2, 3, 4, 5)))
 }
 
 // 재귀로 합계 구하기
@@ -68,5 +70,22 @@ private fun toBinary(input: Int): String {
             val binary = (input % 2).toString()
             return toBinary(input / 2) + binary
         }
+    }
+}
+
+// element를 n개 가지는 리스트를 반환
+private fun replicate(count: Int, element: Int) : List<Int> {
+    return when {
+        count == 1 -> listOf(element)
+        else ->  replicate(count - 1, element).plus(element)
+    }
+}
+
+// 입력 받은 리스트에서 n만큼의 값을 꺼내 오는 함수
+private fun take(n: Int, list: List<Int>) : List<Int> {
+    return when {
+        n < 1 -> error("wrong input")
+        n == 1 -> list.subList(0, 1)
+        else -> take(n - 1, list).plus(list[n - 1])
     }
 }
