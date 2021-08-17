@@ -64,8 +64,8 @@ private fun reverse(input: String): String {
 
 // 10진수를 2진수로 변환
 private fun toBinary(input: Int): String {
-    return when {
-        input == 0 -> ""
+    return when (input) {
+        0 -> ""
         else -> {
             val binary = (input % 2).toString()
             return toBinary(input / 2) + binary
@@ -75,9 +75,9 @@ private fun toBinary(input: Int): String {
 
 // element를 n개 가지는 리스트를 반환
 private fun replicate(count: Int, element: Int) : List<Int> {
-    return when {
-        count == 1 -> listOf(element)
-        else ->  replicate(count - 1, element).plus(element)
+    return when (count) {
+        1 -> listOf(element)
+        else -> replicate(count - 1, element).plus(element)
     }
 }
 
