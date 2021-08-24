@@ -9,6 +9,8 @@ fun main() {
     println(toBinary(18))
     println(replicate(4, 5))
     println(take(4, listOf(1, 2, 3, 4, 5)))
+    println(contains(5, listOf(1, 2, 3, 4)))
+    println(contains(5, listOf(1, 2, 3, 4, 5)))
 }
 
 // 재귀로 합계 구하기
@@ -87,5 +89,13 @@ private fun take(n: Int, list: List<Int>) : List<Int> {
         n < 1 -> error("wrong input")
         n == 1 -> list.subList(0, 1)
         else -> take(n - 1, list).plus(list[n - 1])
+    }
+}
+
+// 입력값 n이 리스트에 존재하는지 확인하는 함수
+private fun contains(n: Int, list: List<Int>) : Boolean {
+    return when {
+        list.isEmpty() -> false
+        else -> list.head() == n || contains(n, list.tail())
     }
 }
