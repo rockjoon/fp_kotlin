@@ -3,7 +3,7 @@ package recursion
 fun main() {
     println(sum(10))
     println(power(2, 10))
-    println(factorial(5))
+    println(factorialRecursive(5))
     println(max(listOf(4, 8, 11, 5, 61)))
     println(reverse("abcd"))
     println(toBinary(18))
@@ -29,7 +29,7 @@ private fun power(x: Int, n: Int): Int = when {
 private fun factorial(n: Int): Int {
     return when {
         n < 1 -> 1
-        else -> n * factorial(n - 1)
+        else -> n * factorialRecursive(n - 1)
     }
 }
 
@@ -54,8 +54,8 @@ fun String.tail() = drop(1)
 
 // 입력한 값의 순서를 바꾸기
 private fun reverse(input: String): String {
-    return when {
-        input.length == 1 -> input
+    return when (input.length) {
+        1 -> input
         else -> {
             val head = input.head()
             val tail = reverse(input.tail())
