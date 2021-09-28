@@ -19,6 +19,9 @@ fun fiboMemoization(n: Int): Int {
         n == 0 -> 0
         n == 1 -> 1
         memoFibonacci[n] != -1 -> memoFibonacci[n]
-        else -> fiboMemoization(n - 2) + fiboMemoization(n - 1)
+        else -> {
+            memoFibonacci[n] = fiboMemoization(n - 2) + fiboMemoization(n - 1)
+            memoFibonacci[n]
+        }
     }
 }

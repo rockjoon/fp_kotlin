@@ -1,7 +1,7 @@
 package recursion
 
 fun main() {
-    println(fiboRecursion(150))
+    println(fiboRecursion(15))
 }
 
 private fun fiboRecursion(n: Int): Int {
