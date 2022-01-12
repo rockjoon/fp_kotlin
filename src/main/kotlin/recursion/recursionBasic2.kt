@@ -9,6 +9,9 @@ fun main() {
     println(toBinary2(10))
     println(replicate2(3, 5))
     println(replicate3(5, 1))
+    println(take2(3, listOf(1, 2, 3, 4, 5)))
+    println(elem2(2, listOf(1, 2, 3, 4, 5)))
+    println(elem2(0, listOf(1, 2, 3, 4, 5)))
 }
 
 fun basicSum(n: Int): Int {
@@ -78,4 +81,16 @@ fun replicate2(size: Int, num: Int): List<Int> = when {
 fun replicate3(size: Int, num: Int): List<Int> = when {
     size <= 0 -> listOf()
     else -> listOf(num) + replicate2(size - 1, num)
+}
+
+fun take2(n: Int, list: List<Int>): List<Int> = when {
+    n <= 0 -> listOf()
+    list.isEmpty() -> listOf()
+    else -> listOf(list.first()) + take2(n - 1, list.tail())
+}
+
+fun elem2(num: Int, list: List<Int>): Boolean = when {
+    list.isEmpty() -> false
+    else -> if (list.head() == num) true else elem2(num, list.tail())
+
 }
