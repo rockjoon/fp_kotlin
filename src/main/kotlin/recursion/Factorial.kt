@@ -25,9 +25,7 @@ fun factorialMemoization(n: Int): Int {
     }
 }
 
-fun factorialFP(n: Int) = factorialFP(n, 1)
-
-fun factorialFP(n: Int, result: Int): Int = when (n) {
+tailrec fun factorialFP(n: Int, result: Int = 1): Int = when (n) {
     0 -> result
     else -> factorialFP(n - 1, n * result)
 }
