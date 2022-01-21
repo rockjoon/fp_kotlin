@@ -40,7 +40,7 @@ fun fiboFPBad(n: Int, cache: Array<Int>): Int = when {
 
 fun fiboFP(n: Int) = fiboFP(n, 0, 1)
 
-tailrec fun fiboFP(n: Int, first: Int, second: Int): Int {
+private tailrec fun fiboFP(n: Int, first: Int, second: Int): Int {
     println("fibo($n, $first, $second)")
     return when (n) {
         0 -> first
