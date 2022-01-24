@@ -55,4 +55,3 @@ private fun sayNumber2(x: Int): String = when (x) {
     3 -> "three"
     else -> throw IllegalArgumentException()
 }
-
