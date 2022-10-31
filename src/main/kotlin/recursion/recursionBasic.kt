@@ -1,16 +1,18 @@
 package recursion
 
 fun main() {
-    println(sum(10))
-    println(power(2, 10))
-    println(factorialRecursive(5))
-    println(max(listOf(4, 8, 11, 5, 61)))
-    println(reverse("abcd"))
-    println(toBinary(18))
-    println(replicate(4, 5))
-    println(take(4, listOf(1, 2, 3, 4, 5)))
-    println(contains(5, listOf(1, 2, 3, 4)))
-    println(contains(5, listOf(1, 2, 3, 4, 5)))
+//    println(sum(10))
+//    println(power(2, 10))
+//    println(factorialRecursive(5))
+//    println(max(listOf(4, 8, 11, 5, 61)))
+//    println(reverse("abcd"))
+//    println(toBinary(18))
+//    println(replicate(4, 5))
+//    println(take(4, listOf(1, 2, 3, 4, 5)))
+//    println(contains(5, listOf(1, 2, 3, 4)))
+//    println(contains(5, listOf(1, 2, 3, 4, 5)))
+//    println(zip(listOf(1,3,5,6), listOf(1, 2, 3)))
+//    println(quicksort(listOf(8, 7, 91, 33, 1)))
 }
 
 // 재귀로 합계 구하기
@@ -97,5 +99,24 @@ private fun contains(n: Int, list: List<Int>) : Boolean {
     return when {
         list.isEmpty() -> false
         else -> list.head() == n || contains(n, list.tail())
+    }
+}
+
+//두 개의 리스트를 입력 받아 하나의 리스트로 조합하는 함수
+private fun zip(list1: List<Int>, list2: List<Int>): List<Pair<Int, Int>> {
+    return when{
+        list1.isEmpty() || list2.isEmpty() -> emptyList()
+        else -> {
+            listOf(Pair(list1.head(), list2.head())) + zip(list1.tail(), list2.tail())
+        }
+    }
+}
+
+private fun quicksort(list: List<Int>): List<Int> = when(list.size) {
+    0 -> emptyList()
+    else -> {
+        val pivot = list.first()
+        val (small, big) = list.tail().partition { it < pivot }
+        quicksort(small) + listOf(pivot) + quicksort(big)
     }
 }
