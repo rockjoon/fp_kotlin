@@ -1,18 +1,8 @@
 package recursion
 
 fun main() {
-//    println(sum(10))
-//    println(power(2, 10))
-//    println(factorialRecursive(5))
-//    println(max(listOf(4, 8, 11, 5, 61)))
-//    println(reverse("abcd"))
-//    println(toBinary(18))
-//    println(replicate(4, 5))
-//    println(take(4, listOf(1, 2, 3, 4, 5)))
-//    println(contains(5, listOf(1, 2, 3, 4)))
-//    println(contains(5, listOf(1, 2, 3, 4, 5)))
-//    println(zip(listOf(1,3,5,6), listOf(1, 2, 3)))
-//    println(quicksort(listOf(8, 7, 91, 33, 1)))
+//    println(aPower(2, 10))
+    println(rPower(2, 10))
 }
 
 // 재귀로 합계 구하기
@@ -118,5 +108,92 @@ private fun quicksort(list: List<Int>): List<Int> = when(list.size) {
         val pivot = list.first()
         val (small, big) = list.tail().partition { it < pivot }
         quicksort(small) + listOf(pivot) + quicksort(big)
+    }
+}
+private fun aFactorial(n: Int): Int = when(n) {
+    1 -> 1
+    else -> n * aFactorial(n - 1)
+}
+
+private tailrec fun rFactorial(n: Int, acc: Int = 1): Int = when(n) {
+    0 -> acc
+    else -> rFactorial(n-1, n * acc)
+}
+
+private fun aPower(no: Int, count: Int): Int {
+    println("count: $count")
+    return when (count) {
+        0 -> 1
+        else -> no * aPower(no, count - 1)
+    }
+}
+
+private tailrec fun rPower(no: Int, count: Int, acc: Int = 1): Int {
+    println("count: $count, acc: $acc")
+    return when(count) {
+        0 -> acc
+        else -> rPower(no, count - 1, no * acc)
+    }
+}
+
+private fun aMaximum(list: List<Int>): Int {
+    return when (list.size) {
+        1 -> list.first()
+        else -> {
+            val head = list.first()
+            val maximum = aMaximum(list.tail())
+            println("$head, $maximum")
+            if (head > maximum) head else maximum
+        }
+    }
+}
+
+private tailrec fun rMaximum(list: List<Int>, acc: Int = Int.MIN_VALUE): Int = when(list.size) {
+    1 -> list.first()
+    else -> {
+        val maximum = if (list.first() > acc) list.first() else acc
+        rMaximum(list.tail(), maximum)
+    }
+}
+
+private fun aReverse(str: String): String = when(str.length) {
+    0 -> ""
+    else -> aReverse(str.tail()) + str.head()
+}
+
+private tailrec fun rReverse(str: String, acc: String = ""): String = when(str.length) {
+    0 -> acc
+    else -> rReverse(str.tail(), str.head() + acc)
+}
+
+private fun aToBinary(n: Int): String {
+    return when(n) {
+        0 -> "0"
+        1 -> "1"
+        else -> aToBinary(n/2) + (n%2).toString()
+    }
+}
+
+private tailrec fun rToBinary(n: Int, acc: String = ""): String {
+    println("n : $n, acc: $acc")
+    return when {
+        n < 1 -> acc
+        else -> rToBinary(n/2, (n%2).toString() + acc)
+    }
+}
+
+private fun aReplicate(count: Int, no: Int): List<Int> {
+    println("c: $count")
+    return when(count) {
+        1 -> listOf(no)
+        else -> listOf(no) + aReplicate(count - 1, no)
+    }
+}
+
+private tailrec fun rReplicate(count: Int, no: Int, acc: List<Int> = emptyList()): List<Int> {
+    println("count: $count, acc: $acc")
+    return when(count) {
+        0 -> acc
+        else -> rReplicate(count - 1, no, listOf(no) + acc)
     }
 }
