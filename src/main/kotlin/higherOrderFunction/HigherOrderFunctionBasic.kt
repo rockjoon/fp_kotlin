@@ -13,6 +13,9 @@ private fun higherOrderFunction1(function: () -> Unit): Unit {
 private fun higherOrderFunction2(): () -> Unit {
     return { println("hof2")}
 }
+private fun higherOrderFunction3(): () -> Unit {
+    return { println("hof3")}
+}
 
 private fun twiceBiggerThanTen(list: List<Int>): List<Int> {
     val resultList = mutableListOf<Int>()
